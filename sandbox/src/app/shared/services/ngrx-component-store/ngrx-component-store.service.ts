@@ -1,17 +1,20 @@
 import { HttpClient } from '@angular/common/http';
-import { inject } from '@angular/core';
+import { Injectable, OnInit, inject } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import { EMPTY, catchError, switchMap, tap } from 'rxjs';
 import { Filter, GeneralResponse, StoreConfig, StoreState } from '../../interfaces';
 
-
-export abstract class StoreService<T, R, F extends Filter = never> extends ComponentStore<StoreState<T, F>> {
+@Injectable()
+export abstract class StoreService<T, R, F extends Filter = never> extends ComponentStore<StoreState<T, F>> implements OnInit {
   private httpClient = inject(HttpClient)
 
   readonly data = this.select(state => state.data);
-
   constructor(private storeConfig: StoreConfig<T, R>) {
-    super({
+    super()
+  }
+
+  ngOnInit() {
+    this.setState({
       data: null,
       error: null,
       filter: null,

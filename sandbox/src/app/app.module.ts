@@ -6,15 +6,25 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './shared/services/basic-store/user.service';
 import { FilterService } from './shared/services/filter.service';
+import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SelectComponent } from './components/select/select.component';
+import { AutocompleteInputComponent } from './components/autocomplete-input/autocomplete-input.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
   ],
-  imports: [
+  imports: [AutocompleteInputComponent,
+    SelectComponent,
+    AutocompleteComponent,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
